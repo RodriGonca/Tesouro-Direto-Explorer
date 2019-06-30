@@ -72,10 +72,10 @@ df$classe = plyr::mapvalues(df$classe,
 
 df$titulo <- paste(df$classe, df$vencimento)
 
+bond_data <- df
 
-rm(temp_false, temp_true, file, files, sheet)
+rm(temp_false, temp_true, file, files, sheet, df)
 gc()
-
 
 bond_names = tibble(classe = c('LFT', 'LTN', 'NTN-B', 'NTN-B Princ', 'NTN-C', 'NTN-F'),
                     old_name = c('Letra Financeira do Tesouro', 
@@ -98,29 +98,12 @@ bond_names = tibble(classe = c('LFT', 'LTN', 'NTN-B', 'NTN-B Princ', 'NTN-C', 'N
                              'pré-fixado'),
                     juros_semestrais = c(FALSE,FALSE,TRUE,FALSE,TRUE,TRUE))
 
-# analisys --------- ----------------------------------------------------------
-
-df <- filter(df, !pu_compra == 0)
-df <- filter(df, !pu_venda == 0)
-
-bond_status <- group_by(df, titulo) %>% 
+bond_status <- group_by(bond_data, titulo) %>% 
   summarise(start = min(dia),
             vencimento = max(vencimento),
             status = ifelse(today()<=vencimento, 'active', 'expired'))
 
+# selic <- read_delim('./data/taxa_selic_apurada_2002_2012.csv', skip = 1, delim = ';') %>% 
+#   select(Data, `Taxa (% a.a.)`, `Fator diário`)
+# selic$Data <- parse_date(selic$Data, format = '%d/%m/%Y')
 
-p <- left_join(df, bond_names, by = 'classe') %>%
-  left_join(bond_status, by = 'titulo') %>% 
-  filter(classe == 'NTN-B' | classe == 'NTN-B Princ',
-         status == 'active') %>%
-  ggplot(aes(x = dia)) +
-    geom_line(aes(color = titulo, y = taxa_venda), size = 0.2) +
-    geom_smooth(aes(y = taxa_compra)) +
-    theme_economist() +
-  scale_x_date(date_breaks = '6 month', date_labels = "%b %y") +
-  scale_y_continuous(labels = function(x) paste0(x*100, "%"),
-                     limits = c(0, 0.1))
-
-p <- ggplotly(p)
-
-p  
