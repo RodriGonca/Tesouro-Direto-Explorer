@@ -7,7 +7,8 @@ library(ggthemes)
 
 # source scripts -------------------------------------------------------------
 
-#source('./scripts/tidy_data.R')
+reticulate::py_run_file('./scripts/data_download.py')
+source('./scripts/tidy_data.R')
 
 # analisys -------------------------------------------------------------------
 
