@@ -26,3 +26,4 @@ vignettes/*.pdf
 rsconnect/
 Terouro_Direto_Explorer.Rproj
 data/
+.idea/
