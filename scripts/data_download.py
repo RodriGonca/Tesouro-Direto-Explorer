@@ -4,6 +4,7 @@ Created on Fri Jun 28 19:23:37 2019
 
 @author: @RodriGonca
 """
+import os
 import re
 import requests
 from bs4 import BeautifulSoup
@@ -34,6 +35,5 @@ def download_data():
     return links
 
 if __name__ == '__main__':
+    os.chdir("..")
     links = download_data()
-
-    
