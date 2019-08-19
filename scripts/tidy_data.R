@@ -3,9 +3,6 @@ library(stringr)
 library(lubridate)
 library(readr)
 library(readxl)
-library(ggplot2)
-library(plotly)
-library(ggthemes)
 
 # tidy data from raw files ----------------------------------------------------------
 
