@@ -4,7 +4,7 @@ library(lubridate)
 library(readr)
 library(readxl)
 
-# tidy data from raw files ----------------------------------------------------------
+# tidy bond data -----
 
 files = list.files('data/', full.names = TRUE)
 
@@ -74,6 +74,8 @@ bond_data <- df
 rm(temp_false, temp_true, file, files, sheet, df)
 gc()
 
+## create bond names dataframe ----
+
 bond_names = tibble(classe = c('LFT', 'LTN', 'NTN-B', 'NTN-B Princ', 'NTN-C', 'NTN-F'),
                     old_name = c('Letra Financeira do Tesouro', 
                                  'Letra do Tesouro Nacional', 
@@ -95,12 +97,23 @@ bond_names = tibble(classe = c('LFT', 'LTN', 'NTN-B', 'NTN-B Princ', 'NTN-C', 'N
                              'pré-fixado'),
                     juros_semestrais = c(FALSE,FALSE,TRUE,FALSE,TRUE,TRUE))
 
+## calculate bond status dataframe ----
+
 bond_status <- group_by(bond_data, titulo) %>% 
   summarise(start = min(dia),
             vencimento = max(vencimento),
             status = ifelse(today()<=vencimento, 'active', 'expired'))
 
-# selic <- read_delim('./data/taxa_selic_apurada_2002_2012.csv', skip = 1, delim = ';') %>% 
-#   select(Data, `Taxa (% a.a.)`, `Fator diário`)
-# selic$Data <- parse_date(selic$Data, format = '%d/%m/%Y')
+## get Selic data -----
+selic_actual        <- Quandl("BCB/4189", api_key="-xkrwaz77Fyu-Wd-fs2y")
+selic_actual        <- filter(selic_actual, Date >= make_date(2002, 1, 1))
+selic_actual$Value <- selic_actual$Value / 100 
+selic_target        <- Quandl("BCB/432", api_key="-xkrwaz77Fyu-Wd-fs2y")
+selic_target        <- filter(selic_target, Date >= make_date(2002, 1, 1))
+selic_target$Value  <- selic_target$Value / 100
+
+## get IPCA data -----
+ipca_12m        <- Quandl("BCB/13522", api_key="-xkrwaz77Fyu-Wd-fs2y")
+ipca_12m        <- filter(ipca_12m, Date >= make_date(2002, 1, 1))
+ipca_12m$Value  <- ipca_12m$Value / 100
 
