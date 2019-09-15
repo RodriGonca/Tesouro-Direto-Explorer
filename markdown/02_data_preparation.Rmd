@@ -12,8 +12,7 @@ knitr::opts_knit$set(root.dir = "../")
 
 ```{r scripts_data_preparation, include=FALSE}
 # loading required steps before performing the analysis
-source("./src/util/auxiliary_functions.R")
-source("./src/datapreparation/execute_data_preparation.R")
+
 ```
 
 # Data Preparation

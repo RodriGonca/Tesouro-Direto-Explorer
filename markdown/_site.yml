@@ -10,8 +10,6 @@ navbar:
       menu: 
         - text: "About the Data"
           href: 01_about_the_data.html
-        - text: "---------"
-        - text: "Initial Analysis"
         - text: "Data Preparation"
           href: 02_data_preparation.html
         - text: "Data Exploration"
@@ -19,13 +17,11 @@ navbar:
     - text: "Final Report"
       icon: fa-file-invoice-dollar
       menu:
-        - text: "Conclusion"
-          href: conclusion.html
         - text: "References"
           href: references.html
 output:
   html_document: 
-    theme: jekyll-theme-cayman
+    theme: cosmo
     highlight: tango
     number_sections: yes
     toc: yes

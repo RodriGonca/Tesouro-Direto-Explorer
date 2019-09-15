@@ -1,5 +1,5 @@
 # performing data loading -----------------------------------------------------
-dataDirectory <- "data/raw/"
+dataDirectory <- paste(stringr::str_replace(getwd(),"/markdown",""), "/data/raw/",sep = "")
 
 # get bond data -----
 files = list.files(dataDirectory, full.names = TRUE)
