@@ -1,0 +1,34 @@
+---
+title: "Conclusion"
+date: "August, 2019"
+---
+
+```{r setup_evaluation, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(fig.pos =  "h")
+knitr::opts_knit$set(root.dir = "../")
+
+```
+
+```{r scripts_evaluation, include=FALSE}
+# loading required steps before performing the analysis
+source("./src/util/auxiliary_functions.R")
+source("./src/datapreparation/execute_data_preparation.R")
+```
+
+# Objective
+
+Describe the objetive of this report.
+
+*******************************************************************************
+
+# Model evaluation
+
+## Getting the predicted score from each model
+
+text goes here
+
+```{r get_scores_evaluation, echo=TRUE}
+# your code goes here
+```
+
