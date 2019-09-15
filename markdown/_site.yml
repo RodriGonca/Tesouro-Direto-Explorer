@@ -5,16 +5,12 @@ navbar:
     - text: "Home"
       icon: fa-home
       href: index.html
-    - text: "About the Data"
-      href: 01_about_the_data.html
-    - text: "Data Preparation"
-      href: 02_data_preparation.html
-    - text: "Data Exploration"
-      href: 03_exploration_report.html
+    - text: "Tesouro Direto"
+      href: Tesouro-Direto.html
 
 output:
   html_document: 
-    theme: jekyll-theme-cayman
+    theme: cosmo
     highlight: tango
     number_sections: yes
     toc: yes
