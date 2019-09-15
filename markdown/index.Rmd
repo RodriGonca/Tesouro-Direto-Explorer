@@ -13,7 +13,7 @@ Use the menu above to navigate and see the final report.
 
 ## Authors
 
-- [Student name 1](mailto:name@email.com) / A123456789
+- RodriGonca
 
 ## Where to find the source code of this project?
 This project can be found and downloaded on GitHub: https://github.com/your_user/your_project

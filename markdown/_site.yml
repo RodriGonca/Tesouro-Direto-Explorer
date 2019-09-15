@@ -5,23 +5,16 @@ navbar:
     - text: "Home"
       icon: fa-home
       href: index.html
-    - text: "Motivation"
-      icon: fa-hand-holding-usd
-      menu: 
-        - text: "About the Data"
-          href: 01_about_the_data.html
-        - text: "Data Preparation"
-          href: 02_data_preparation.html
-        - text: "Data Exploration"
-          href: 03_exploration_report.html
-    - text: "Final Report"
-      icon: fa-file-invoice-dollar
-      menu:
-        - text: "References"
-          href: references.html
+    - text: "About the Data"
+      href: 01_about_the_data.html
+    - text: "Data Preparation"
+      href: 02_data_preparation.html
+    - text: "Data Exploration"
+      href: 03_exploration_report.html
+
 output:
   html_document: 
-    theme: cosmo
+    theme: cayman
     highlight: tango
     number_sections: yes
     toc: yes
