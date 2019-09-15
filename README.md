@@ -1,1 +1,0 @@
-# Terouro_Direto_Explorer
