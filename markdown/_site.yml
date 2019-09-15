@@ -14,7 +14,7 @@ navbar:
 
 output:
   html_document: 
-    theme: cayman
+    theme: jekyll-theme-cayman
     highlight: tango
     number_sections: yes
     toc: yes
