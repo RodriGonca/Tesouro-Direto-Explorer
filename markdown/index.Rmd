@@ -4,16 +4,9 @@ title: 'Tesouro Direto Explorer'
 
 # Tesouro Direto Explorer
 
-Describe your project using an short overview about the objectives.
-
-Use the menu above to navigate and see the final report.
-
-## Professor
-- Professor name (name@email.com)
-
 ## Authors
 
 - RodriGonca
 
 ## Where to find the source code of this project?
-This project can be found and downloaded on GitHub: https://github.com/your_user/your_project
+This project can be found and downloaded on GitHub: https://github.com/RodriGonca/Tesouro-Direto-Explorer
