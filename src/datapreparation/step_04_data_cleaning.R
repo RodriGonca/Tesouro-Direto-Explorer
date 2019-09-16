@@ -1,4 +1,3 @@
-library(dplyr)
 
 ## remove outliers -----------------------------------------------------------
 bond_data <- filter(bond_data, !pu_compra == 0)

@@ -14,7 +14,7 @@ plot_NTNB_premium_trend <- left_join(bond_data, bond_names, by = 'classe') %>%
   geom_smooth(aes(y = taxa_compra), method = 'loess') +
   theme_economist() +
   scale_x_date(date_breaks = '6 month', date_labels = "%b %y") +
-  scale_y_continuous(labels = function(x) paste0( x *100, "%"),
+  scale_y_continuous(labels = function(x) paste0( x * 100, "%"),
                      limits = c(0, 0.1)) +
   labs(y = 'Taxa de Venda %',
        x = 'Data',
@@ -34,7 +34,7 @@ plot_prefix_trend <- left_join(bond_data, bond_names, by = 'classe') %>%
   geom_smooth(aes(y = taxa_compra), method = 'loess') +
   theme_economist() +
   scale_x_date(date_breaks = '6 month', date_labels = "%b %y") +
-  scale_y_continuous(labels = function(x) paste0(x*100, "%"),
+  scale_y_continuous(labels = function(x) paste0(x * 100, "%"),
                      limits = c(0, 0.2)) +
   labs(y = 'Taxa de Venda %',
        x = 'Data',
