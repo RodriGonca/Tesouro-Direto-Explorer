@@ -11,7 +11,7 @@ plot_NTNB_premium_trend <- left_join(bond_data, bond_names, by = 'classe') %>%
          status == 'active') %>%
   ggplot(aes(x = dia)) +
   geom_line(aes(color = titulo, y = taxa_venda), size = 0.2) +
-  geom_smooth(aes(y = taxa_compra), method = 'loess') +
+  geom_smooth(aes(y = taxa_compra), method = 'loess', formula = 'y ~ x') +
   theme_economist() +
   scale_x_date(date_breaks = '6 month', date_labels = "%b %y") +
   scale_y_continuous(labels = function(x) paste0( x * 100, "%"),
@@ -31,7 +31,7 @@ plot_prefix_trend <- left_join(bond_data, bond_names, by = 'classe') %>%
          status == 'active') %>%
   ggplot(aes(x = dia)) +
   geom_line(aes(color = titulo, y = taxa_venda), size = 0.2) +
-  geom_smooth(aes(y = taxa_compra), method = 'loess') +
+  geom_smooth(aes(y = taxa_compra), method = 'loess', formula = 'y ~ x') +
   theme_economist() +
   scale_x_date(date_breaks = '6 month', date_labels = "%b %y") +
   scale_y_continuous(labels = function(x) paste0(x * 100, "%"),
