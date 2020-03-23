@@ -44,7 +44,7 @@ plot_prefix_trend <- ggplotly(plot_prefix_trend)
 
 plot_prefix_trend
 
-## Histórico da Taxa de Venda - LFT ----------------------------------------
+## Histórico da Taxa de Venda - LFT -------------------------------------------
 plot_posfix_trend <- left_join(bond_data, bond_names, by = 'classe') %>%
   left_join(bond_status, by = 'titulo') %>%
   filter(classe == 'LFT',
@@ -62,14 +62,16 @@ plot_posfix_trend <- ggplotly(plot_posfix_trend)
 
 plot_posfix_trend
 
-## Histórico da Selic + Inflação -------------------------------------------
+## Histórico da Selic + Inflação -----------------------------------------------
 plot_selic_inflation <- ggplot() +
-  geom_line(data = selic_actual, aes(x = Date, y = Value, color = 'Selic Annual')) +
+  geom_line(data = selic_actual, aes(x = Date, y = Value, 
+                                     color = 'Selic Annual')) +
   geom_line(data = ipca_12m, aes(x = Date, y = Value, color = 'IPCA 12m')) +
   theme_economist() +
   scale_x_date(date_breaks = '6 month', date_labels = "%b %y") +
   scale_y_continuous(labels = function(x) paste0(x * 100, "%")) +
-  scale_color_manual(values = c('Selic Annual' = 'darkblue', 'IPCA 12m' = 'darkred'),
+  scale_color_manual(values = c('Selic Annual' = 'darkblue', 
+                                'IPCA 12m' = 'darkred'),
                      name = NULL) +
   labs(y = '% Anualizado',
        x = 'Data',
