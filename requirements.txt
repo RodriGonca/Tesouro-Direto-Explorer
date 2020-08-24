@@ -1,0 +1,13 @@
+Quandl
+tibble
+magrittr
+dplyr
+tidyr
+readr
+readxl
+stringr
+lubridate
+reticulate
+ggplot2
+plotly
+ggthemes
