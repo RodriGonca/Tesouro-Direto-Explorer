@@ -38,3 +38,8 @@ Terouro Direto Explorer.Rproj
 
 data folder
 data/
+
+# renv
+
+# .Rprofile
+# renv/
