@@ -11,3 +11,5 @@ reticulate
 ggplot2
 plotly
 ggthemes
+rstudioapi
+plyr
