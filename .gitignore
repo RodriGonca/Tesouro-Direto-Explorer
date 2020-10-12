@@ -43,3 +43,5 @@ data/
 
 # .Rprofile
 # renv/
+
+.spyproject/
