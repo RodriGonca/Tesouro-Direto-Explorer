@@ -6,6 +6,7 @@ Created on Fri Jun 28 19:23:37 2019
 """
 
 #%% import
+import sys
 import concurrent.futures
 import re
 from datetime import datetime
@@ -31,7 +32,13 @@ def get_links():
 
 #%% function 2
 def download_data(link: str):
-    resp = requests.get(link)
+    
+    try:
+        resp = requests.get(link)
+    except:
+        download_data(link)
+        return None
+
     if resp.status_code == 200:
         try:
             filename = resp.headers['Content-Disposition'].split()[1].replace('filename="', '').replace('";', '')
