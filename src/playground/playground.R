@@ -24,6 +24,25 @@ plot_NTNB_premium_trend <- ggplotly(plot_NTNB_premium_trend)
 
 plot_NTNB_premium_trend
 
+## Histórico da Preco de Venda - NTN-B ----------------------------------------
+plot_NTNB_value_trend <- left_join(bond_data, bond_names, by = 'classe') %>%
+  left_join(bond_status, by = 'titulo') %>%
+  filter(classe == 'NTN-B' | classe == 'NTN-B Princ',
+         status == 'active', titulo == 'NTN-B Princ 2035-05-15') %>%
+  ggplot(aes(x = dia)) +
+  geom_line(aes(color = 'Compra', y = pu_venda), size = 0.2) +
+  geom_line(aes(color = 'Venda', y = pu_compra), size = 0.2) +
+  geom_smooth(aes(y = pu_venda), method = 'loess', formula = 'y ~ x') +
+  theme_economist() +
+  scale_x_date(date_breaks = '6 month', date_labels = "%b %y") +
+  labs(y = 'Preços',
+       x = 'Data',
+       title = 'Histórico do Preços - NTN-B')
+
+plot_NTNB_value_trend <- ggplotly(plot_NTNB_value_trend)
+
+plot_NTNB_value_trend
+
 ## Histórico da Taxa de Venda - NTN-B ----------------------------------------
 plot_prefix_trend <- left_join(bond_data, bond_names, by = 'classe') %>%
   left_join(bond_status, by = 'titulo') %>%
