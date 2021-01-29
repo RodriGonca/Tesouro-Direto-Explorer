@@ -1,10 +1,10 @@
-# source scripts -------------------------------------------------------------
+# source scripts --------------------------------------------------------------
 
 source("./src/datapreparation/execute_data_preparation.R")
 
-# analisys -------------------------------------------------------------------
+# analisys --------------------------------------------------------------------
 
-## Histórico da Taxa de Venda - NTN-B ----------------------------------------
+## Histórico da Taxa de Venda - NTN-B -----------------------------------------
 plot_NTNB_premium_trend <- left_join(bond_data, bond_names, by = 'classe') %>%
   left_join(bond_status, by = 'titulo') %>%
   filter(classe == 'NTN-B' | classe == 'NTN-B Princ',
@@ -43,7 +43,7 @@ plot_NTNB_value_trend <- ggplotly(plot_NTNB_value_trend)
 
 plot_NTNB_value_trend
 
-## Histórico da Taxa de Venda - NTN-B ----------------------------------------
+## Histórico da Taxa de Venda - NTN-B -----------------------------------------
 plot_prefix_trend <- left_join(bond_data, bond_names, by = 'classe') %>%
   left_join(bond_status, by = 'titulo') %>%
   filter(classe == 'LTN' | classe == 'NTN-F',
@@ -81,7 +81,7 @@ plot_posfix_trend <- ggplotly(plot_posfix_trend)
 
 plot_posfix_trend
 
-## Histórico da Selic + Inflação -----------------------------------------------
+## Histórico da Selic + Inflação ----------------------------------------------
 plot_selic_inflation <- ggplot() +
   geom_line(data = selic_actual, aes(x = Date, y = Value, 
                                      color = 'Selic Annual')) +
