@@ -43,7 +43,7 @@ plot_NTNB_value_trend <- ggplotly(plot_NTNB_value_trend)
 
 plot_NTNB_value_trend
 
-## Histórico da Taxa de Venda - NTN-B -----------------------------------------
+## Histórico da Taxa de Venda - LTN -------------------------------------------
 plot_prefix_trend <- left_join(bond_data, bond_names, by = 'classe') %>%
   left_join(bond_status, by = 'titulo') %>%
   filter(classe == 'LTN' | classe == 'NTN-F',
