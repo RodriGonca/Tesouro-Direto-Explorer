@@ -99,3 +99,4 @@ plot_selic_inflation <- ggplot() +
 plot_selic_inflation <- ggplotly(plot_selic_inflation)
 
 plot_selic_inflation
+
