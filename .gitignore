@@ -47,3 +47,7 @@ data/
 .spyproject/
 
 .idea
+
+env/
+
+desktop.ini
