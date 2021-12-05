@@ -100,3 +100,85 @@ plot_selic_inflation <- ggplotly(plot_selic_inflation)
 
 plot_selic_inflation
 
+
+## - Curva de Juros
+
+library(av)
+
+save_plot <- function(df) {
+  
+  png(paste('images/Curva de juros da taxa compra de títulos pré fixados em', format(df$dia, '%Y%m%d'), '.png'),
+      width = 3840,
+      height = 2160)
+
+  print(  
+    ggplot(data=df) +
+      geom_label(aes(
+                  x = vencimento,
+                  y = taxa_compra * 1,
+                  label = paste(format(vencimento, '%b-%Y'),
+                                '                  ',
+                                format(taxa_compra * 100, nsmall=2), '%')
+                ),
+                fill='grey',
+                alpha=1,
+                size=9,
+                label.size=0,
+                label.padding = unit(1, "lines")) +
+      geom_point(aes(x = vencimento,
+                     y = taxa_compra,
+                     color = 'Taxa Compra'),
+                 size = 10) +
+      stat_smooth(aes(x = vencimento,
+                      y = taxa_compra),
+                  method = "lm",
+                  formula = y ~ poly(x, 2),
+                  se = FALSE,
+                  size = 1.5,
+                  color = 'blue',
+                  linetype = 'dotted') +
+      scale_x_date(date_labels = "%b-%Y") +
+      scale_y_continuous(labels = function(x) paste0(format(x * 100, nsmall=2), "%")) +
+      scale_color_manual(values = c('Taxa Compra' = 'red'),
+                         name = NULL) +
+      labs(y = element_blank(),
+           x = 'Vencimento',
+           title = paste('Curva de juros da taxa compra de títulos pré fixados em', format(df$dia, '%d-%b-%Y'))) +
+      facet_wrap(~classe_name,
+                 ncol=1,
+                 scales="free") +
+      theme(legend.position="none",
+            panel.grid.major = element_blank(), 
+            panel.grid.minor = element_blank(),
+            panel.background = element_blank(),
+            axis.text.y = element_blank(),
+            axis.text = element_text(size=32),
+            axis.ticks = element_blank(),
+            axis.title = element_blank(),
+            plot.title = element_text(size=64, 
+                                      hjust = 0.5),
+            strip.text = element_text(size=32))
+    )
+  
+  dev.off()
+
+}
+
+
+dias <- sort(unique(bond_data$dia), decreasing = TRUE)
+#dias <- dias[dias>="2021-01-01"]
+
+
+for (dia_unique in dias) {
+  
+  df <- filter(bond_data, dia==dia_unique, classe %in% c('LTN', 'NTN-B', 'NTN-B Princ'))
+  df$classe_name = plyr::mapvalues(df$classe, bond_names$classe, bond_names$new_name, warn_missing = FALSE)
+  
+  save_plot(df)
+  
+}
+  
+
+av_encode_video(list.files('images/', full.names = TRUE), 
+                framerate = as.integer(length(dias) / 60),
+                output = 'teste.mp4')

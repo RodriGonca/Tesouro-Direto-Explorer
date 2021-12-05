@@ -51,3 +51,8 @@ data/
 env/
 
 desktop.ini
+
+#imagens
+images/
+gifs/
+*.mp4
